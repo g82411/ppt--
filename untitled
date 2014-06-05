@@ -1,0 +1,3 @@
+import re
+abc="<div class=\"r-ent\"><div class=\"nrec\"></div><div class=\"mark\"></div><div class=\"title\"><a href=\"/bbs/YTHT_TaiWan/M.1218288982.A.2E2.html\">dasd</a></div><div class=\"meta\"><div class=\"date\"> 8/09</div><div class=\"author\">moqi</div></div></div>"
+print re.findall('href=(.+)\"?',abc)

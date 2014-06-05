@@ -28,6 +28,6 @@ for i in range (int(numberOfPage[1])+1):
 	print 'http://www.ptt.cc/bbs/YTHT_TaiWan/index'+str(i)+'.html'
 	if(re.findall('PAPERppt',requests.get('http://www.ptt.cc/bbs/YTHT_TaiWan/index'+str(i)+'.html').text.encode('utf-8','ignore'))):
 		cookies=dict(over18="1")
-		print re.findall("(/M\.\d+\.A\.\w+\.html)\">(.+)</a>?",requests.get('http://www.ptt.cc/bbs/YTHT_TaiWan/index.html'
+		print re.findall("<div class=\"r-ent\"><div class=\"nrec\"></div><div class=\"mark\"></div><div class=\"title\"><a href=\"/bbs/YTHT_TaiWan/(.+)\"?>(.+)</?a></div><div class=\"meta\"><div class=\"date\"> (.+)</div>?<div class=\"author\">(.+)</div></div></div>",requests.get('http://www.ptt.cc/bbs/YTHT_TaiWan/index.html'
 			,cookies=cookies).text.encode('utf-8','ignore'))
 

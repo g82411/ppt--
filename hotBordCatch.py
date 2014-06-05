@@ -19,6 +19,7 @@ def goPath():
 	        os.mkdir(path)
 	    os.chdir(path)
 def catchPost(bordName):
-	html_src=requests.get('http://www.ptt.cc/bbs/'+bordName+'/index.html').text.encode('utf-8','ignore')
+	cookies=dict(over18="1")
+	html_src=requests.get('http://www.ptt.cc/bbs/'+bordName+'/index.html',cookies=cookies).text.encode('utf-8','ignore')
 	print html_src
-hotBordCatch()
+catchPost("Gossiping")

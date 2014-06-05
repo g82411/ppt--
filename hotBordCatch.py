@@ -21,5 +21,13 @@ def goPath():
 def catchPost(bordName):
 	cookies=dict(over18="1")
 	html_src=requests.get('http://www.ptt.cc/bbs/'+bordName+'/index.html',cookies=cookies).text.encode('utf-8','ignore')
-	print html_src
-catchPost("Gossiping")
+	print re.findall("(/M\.\d+\.A\.\w+\.html)\">(.+)</a>?",html_src)
+numberOfPage=re.findall('index(\d+)\.html',requests.get('http://www.ptt.cc/bbs/YTHT_TaiWan/index.html').text.encode('utf-8','ignore'))
+bordThatHave=[]
+for i in range (int(numberOfPage[1])+1):
+	print 'http://www.ptt.cc/bbs/YTHT_TaiWan/index'+str(i)+'.html'
+	if(re.findall('PAPERppt',requests.get('http://www.ptt.cc/bbs/YTHT_TaiWan/index'+str(i)+'.html').text.encode('utf-8','ignore'))):
+		cookies=dict(over18="1")
+		print re.findall("(/M\.\d+\.A\.\w+\.html)\">(.+)</a>?",requests.get('http://www.ptt.cc/bbs/YTHT_TaiWan/index.html'
+			,cookies=cookies).text.encode('utf-8','ignore'))
+

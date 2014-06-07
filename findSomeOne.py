@@ -14,12 +14,10 @@ for i in range (int(numberOfPage[1])+1):
 		correctArticle=re.sub('\s','',article)
 		# print correctArticle
 		if r.status_code==200 :
-			print 'in'
 			result=re.findall("<divclass=\"r-ent\"><divclass=\"nrec\"></div><divclass=\"mark\">"
 				"</div><divclass=\"title\"><ahref=\"/bbs/YTHT_TaiWan/(.+?)"
-				".html\">(.+?)</a></div><divclass=\"meta\"><divclass=\"date\">(\d/\d\d)"
-				"</div><divclass=\"author\">"
-				"O9XXXX9897</div></div></div>",correctArticle)
+				".html\">(/)</a></div><divclass=\"meta\"><divclass=\"date\">(\d/\d\d)?"
+				"</div><divclass=\"author\">"+targetName+"</div></div></div>",correctArticle)
 			print result
 			# print 'url=%s \n'%(result[0])
 			# print 'url=%s \n, title=%s \n, date=%s\n'%(result[0],result[1],result[2])

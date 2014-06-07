@@ -18,8 +18,11 @@ for i in range (int(numberOfPage[1])+1):
 				"</div><divclass=\"title\"><ahref=\"/bbs/YTHT_TaiWan/(.+?)"
 				".html\">(.+?)</a></div><divclass=\"meta\"><divclass=\"date\">(\d/\d\d)"
 				"</div><divclass=\"author\">"+targetName+"</div></div></div>",correctArticle)
-			print result
+			# print result
 			# print 'url=%s \n'%(result[0])
 			# print 'url=%s \n, title=%s \n, date=%s\n'%(result[0],result[1],result[2])
 		else:
 			print '503'
+for i in range (len(result)):
+	 print 'url=%s ,\ndate=%s ,\ntitle=%s'%(result[i][0],result[i][2],result[i][1])
+	 print '============================================================================'

@@ -3,12 +3,13 @@ import re
 import requests
 targetURL='http://www.ptt.cc/bbs/YTHT_TaiWan/index'
 targetName='O9XXXX9897'
-numberOfPage=re.findall('index(\d+)\.html',requests.get(targetURL+'.html').text.encode('utf-8','ignore'))
+cookies=dict(over18="1")
+count=0
+numberOfPage=re.findall('index(\d+)\.html',requests.get(targetURL+'.html',cookies=cookies).text.encode('utf-8','ignore'))
 # numberOfPage 0 = oldestPage ,1 = totalPages
 bordThatHave=[]
-cookies=dict(over18="1")
 for i in range (int(numberOfPage[1])+1):
-	if(re.findall(targetName,requests.get(targetURL+str(i)+'.html').text.encode('utf-8','ignore'))):
+	if(re.findall(targetName,requests.get(targetURL+str(i)+'.html',cookies=cookies).text.encode('utf-8','ignore'))):
 		r=requests.get(targetURL+str(i)+'.html')
 		article=r.text.encode('utf-8','ignore')
 		correctArticle=re.sub('\s','',article)
@@ -16,13 +17,14 @@ for i in range (int(numberOfPage[1])+1):
 		if r.status_code==200 :
 			result=re.findall("<divclass=\"r-ent\"><divclass=\"nrec\"></div><divclass=\"mark\">"
 				"</div><divclass=\"title\"><ahref=\"/bbs/YTHT_TaiWan/(.+?)"
-				".html\">(.+?)</a></div><divclass=\"meta\"><divclass=\"date\">(\d/\d\d)"
-				"</div><divclass=\"author\">"+targetName+"</div></div></div>",correctArticle)
+				".html\">(.+?)</a></div><divclass=\"meta\"><divclass=\"date\">(\d\d?/\d\d)"
+				"</div><divclass=\"author\">(.+?)</div></div></div>",correctArticle)
 			# print result
 			# print 'url=%s \n'%(result[0])
 			# print 'url=%s \n, title=%s \n, date=%s\n'%(result[0],result[1],result[2])
 		else:
 			print '503'
-for i in range (len(result)):
-	 print 'url=%s ,\ndate=%s ,\ntitle=%s'%(result[i][0],result[i][2],result[i][1])
-	 print '============================================================================'
+		for j in range (len(result)):
+			if result[j][3]==targetName :
+				print 'page=%s ,\nurl=%s ,\ndate=%s ,\ntitle=%s'%(i,result[j][0],result[j][2],result[j][1])
+				print '============================================================================'

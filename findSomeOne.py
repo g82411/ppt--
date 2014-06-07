@@ -16,7 +16,7 @@ for i in range (int(numberOfPage[1])+1):
 		if r.status_code==200 :
 			result=re.findall("<divclass=\"r-ent\"><divclass=\"nrec\"></div><divclass=\"mark\">"
 				"</div><divclass=\"title\"><ahref=\"/bbs/YTHT_TaiWan/(.+?)"
-				".html\">(/)</a></div><divclass=\"meta\"><divclass=\"date\">(\d/\d\d)?"
+				".html\">(.+?)</a></div><divclass=\"meta\"><divclass=\"date\">(\d/\d\d)"
 				"</div><divclass=\"author\">"+targetName+"</div></div></div>",correctArticle)
 			print result
 			# print 'url=%s \n'%(result[0])

@@ -13,15 +13,11 @@ for i in range (int(numberOfPage[1])+1):
 		r=requests.get(targetURL+str(i)+'.html')
 		article=r.text.encode('utf-8','ignore')
 		correctArticle=re.sub('\s','',article)
-		# print correctArticle
 		if r.status_code==200 :
 			result=re.findall("<divclass=\"r-ent\"><divclass=\"nrec\"></div><divclass=\"mark\">"
 				"</div><divclass=\"title\"><ahref=\"/bbs/YTHT_TaiWan/(.+?)"
 				".html\">(.+?)</a></div><divclass=\"meta\"><divclass=\"date\">(\d\d?/\d\d)"
 				"</div><divclass=\"author\">(.+?)</div></div></div>",correctArticle)
-			# print result
-			# print 'url=%s \n'%(result[0])
-			# print 'url=%s \n, title=%s \n, date=%s\n'%(result[0],result[1],result[2])
 		else:
 			print '503'
 		for j in range (len(result)):
